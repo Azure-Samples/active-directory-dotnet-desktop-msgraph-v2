@@ -6,7 +6,7 @@ author: jmprieur
 
 WPF application signing in users with Microsoft and calling the Microsoft Graph
 
-This simple sample demonstrates how to use MSAL.net to get an access token and call the Microsoft Graph (doing oAuth 2.0 against the AAD v2.0 endpoint).
+This simple sample demonstrates how to use the [Microsoft Authentication Library (MSAL) for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) to get an access token and call the Microsoft Graph (doing oAuth 2.0 against the AAD v2.0 endpoint)
 
 ## Steps to Run
 

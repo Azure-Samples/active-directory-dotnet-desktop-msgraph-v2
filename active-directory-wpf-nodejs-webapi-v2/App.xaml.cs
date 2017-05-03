@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Identity.Client;
 
-namespace active_directory_wpf_nodejs_webapi_v2
+namespace active_directory_wpf_msgraph_v2
 {
     /// <summary>
     /// Interaction logic for App.xaml

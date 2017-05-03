@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace active_directory_wpf_nodejs_webapi_v2
+namespace active_directory_wpf_msgraph_v2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

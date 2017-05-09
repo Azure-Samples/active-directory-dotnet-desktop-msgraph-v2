@@ -4,7 +4,11 @@ platforms: dotnet
 author: jmprieur
 ---
 
+
 # WPF application signing in users with Microsoft and calling the Microsoft Graph
+
+| [Getting Started](https://apps.dev.microsoft.com/portal/register-app)| [Library](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) | [Docs](https://aka.ms/aaddev) | [Support](README.md#community-help-and-support) 
+| --- | --- | --- | --- |
 
 This simple sample demonstrates how to use the [Microsoft Authentication Library (MSAL) for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) to get an access token and call the Microsoft Graph (doing oAuth 2.0 against the AAD v2.0 endpoint)
 
@@ -31,14 +35,16 @@ If you just want to quickly run it, use the following instructions:
 
 4. Run the application from Visual Studio (Debug | Start without Debugging)
 
-## Questions and Issues
+## Community Help and Support
 
-Please file any questions or problems with the sample as a github issue.  You can also post on StackOverflow with the tag ```azure-active-directory```.  For oAuth2.0 library issues, please see note above. 
+We use [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) with the community to provide support. We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before. Make sure that your questions or comments are tagged with [msal.js].
 
-## More information
+If you find and bug or have a feature request, please raise the issue on [GitHub Issues](../../issues). 
 
-This sample is the result of following the : https://github.com/Azure-Samples/active-directory-javascript-graphapi-web-v2
+To provide a recommendation, visit our [User Voice page](https://feedback.azure.com/forums/169401-azure-active-directory).
 
 ## Contributing
+
+If you'd like to contribute to this sample, see [CONTRIBUTING.MD](/CONTRIBUTING.md).
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.

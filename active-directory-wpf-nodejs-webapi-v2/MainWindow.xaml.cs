@@ -39,13 +39,12 @@ namespace active_directory_wpf_msgraph_v2
         private async void CallGraphButton_Click(object sender, RoutedEventArgs e)
         {
             AuthenticationResult authResult = null;
+            ResultText.Text = string.Empty;
+            TokenInfoText.Text = string.Empty;
 
             try
             {
-                if (authResult == null)
-                {
-                    authResult = await App.PublicClientApp.AcquireTokenSilentAsync(scopes, App.PublicClientApp.Users.FirstOrDefault());
-                }
+                authResult = await App.PublicClientApp.AcquireTokenSilentAsync(scopes, App.PublicClientApp.Users.FirstOrDefault());
             }
             catch (MsalUiRequiredException ex)
             {

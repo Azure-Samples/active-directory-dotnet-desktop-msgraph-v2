@@ -10,26 +10,26 @@ author: jmprieur
 | [Getting Started](https://apps.dev.microsoft.com/portal/register-app)| [Library](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) | [Docs](https://aka.ms/aaddev) | [Support](README.md#community-help-and-support) 
 | --- | --- | --- | --- |
 
-This simple sample demonstrates how to use the [Microsoft Authentication Library (MSAL) for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) to get an access token and call the Microsoft Graph (doing oAuth 2.0 against the AAD v2.0 endpoint)
+This simple sample demonstrates how to use the [Microsoft Authentication Library (MSAL) for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) to get an access token and call the Microsoft Graph (using OAuth 2.0 against the Azure AD v2.0 endpoint).
 
 ## Steps to Run
 
-You can get full explaination about this sample, and built it from scratch by going to [Mobile and desktop app guided setup](https://github.com/Microsoft/azure-docs/blob/master/articles/active-directory/develop/GuidedSetups/MobileAndDesktopApp/active-directory-mobileanddesktopapp-windowsdesktop-intro.md)
+You can get full explaination about this sample, and build it from scratch by going to [Windows desktop .NET guided walkthrough](https://docs.microsoft.com/azure/active-directory/develop/guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro).
 
 If you just want to quickly run it, use the following instructions:
 
-1. Register your Azure AD v2.0 (converged) app. 
+1. Register an Azure AD v2.0 (converged) app. 
     - Navigate to the [App Registration Portal](https://identity.microsoft.com). 
     - Go to the the `My Apps` page, click `Add an App`, and name your app.  
     - Set a platform by clicking `Add Platform`, select `Native`.
-    - copy to the clipboard your Application Id
+    - Copy to the clipboard your Application Id
 
 2. Clone the code.
   ```
   git clone https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2.git
   ```
 
-3. In the `App.xmal.cs` file, set your application/client id copied from the App Registration Portal.
+3. In the `App.xaml.cs` file, set your application/client id copied from the App Registration Portal.
 
     ``private static string ClientId = "[Application Id pasted from the application registration portal]"``
 

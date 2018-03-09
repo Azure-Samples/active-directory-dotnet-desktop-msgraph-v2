@@ -39,21 +39,23 @@ namespace active_directory_wpf_msgraph_v2
         private async void CallGraphButton_Click(object sender, RoutedEventArgs e)
         {
             AuthenticationResult authResult = null;
+            var app = App.PublicClientApp;
             ResultText.Text = string.Empty;
             TokenInfoText.Text = string.Empty;
 
             try
             {
-                authResult = await App.PublicClientApp.AcquireTokenSilentAsync(scopes, App.PublicClientApp.Users.FirstOrDefault());
+                authResult = await app.AcquireTokenSilentAsync(scopes, app.Users.FirstOrDefault());
             }
             catch (MsalUiRequiredException ex)
             {
-                // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
+                // A MsalUiRequiredException happened on AcquireTokenSilentAsync. 
+                // This indicates you need to call AcquireTokenAsync to acquire a token
                 System.Diagnostics.Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
                 try
                 {
-                    authResult = await App.PublicClientApp.AcquireTokenAsync(scopes);
+                    authResult = await app.AcquireTokenAsync(scopes);
                 }
                 catch (MsalException msalex)
                 {

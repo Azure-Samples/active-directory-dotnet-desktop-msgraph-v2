@@ -16,24 +16,29 @@ This simple sample demonstrates how to use the [Microsoft Authentication Library
 
 You can get full explaination about this sample, and build it from scratch by going to [Windows desktop .NET guided walkthrough](https://docs.microsoft.com/azure/active-directory/develop/guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro).
 
-If you just want to quickly run it, use the following instructions:
+This sample is pre-configured. If you just want to quickly run it just:
 
-1. Register an Azure AD v2.0 (converged) app. 
+1. Clone the code.
+```
+  git clone https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2.git
+```
+
+2.  Run the application from Visual Studio (Debug | Start without Debugging)
+
+### [Optional] Use your own application coordinates
+If you want to use your own application coordinates, please follow these instructions instructions:
+
+3. Register an Azure AD v2.0 (converged) app. 
     - Navigate to the [App Registration Portal](https://identity.microsoft.com). 
     - Go to the the `My Apps` page, click `Add an App`, and name your app.  
     - Set a platform by clicking `Add Platform`, select `Native`.
     - Copy to the clipboard your Application Id
 
-2. Clone the code.
-  ```
-  git clone https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2.git
-  ```
-
-3. In the `App.xaml.cs` file, set your application/client id copied from the App Registration Portal.
+4. In the `App.xaml.cs` file, set your application/client id copied from the App Registration Portal.
 
     ``private static string ClientId = "[Application Id pasted from the application registration portal]"``
 
-4. Run the application from Visual Studio (Debug | Start without Debugging)
+5. Run the application from Visual Studio (Debug | Start without Debugging)
 
 ## Community Help and Support
 

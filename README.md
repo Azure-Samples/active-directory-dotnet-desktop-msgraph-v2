@@ -16,6 +16,8 @@ This simple sample demonstrates how to use the [Microsoft Authentication Library
 
 You can get full explaination about this sample, and build it from scratch by going to [Windows desktop .NET guided walkthrough](https://docs.microsoft.com/azure/active-directory/develop/guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro).
 
+![](https://docs.microsoft.com/en-us/azure/includes/media/active-directory-develop-guidedsetup-windesktop-test/samplescreenshot.png)
+
 This sample is pre-configured. If you just want to quickly run it just:
 
 1. Clone the code.

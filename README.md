@@ -2,8 +2,12 @@
 services: active-directory
 platforms: dotnet
 author: jmprieur
+level: 200
+client: .NET Framework 4.5 WPF 
+service: Microsoft Graph
+endpoint: AAD V2
 ---
-
+![Build Badge](https://identitydivision.visualstudio.com/_apis/public/build/definitions/a7934fdd-dcde-4492-a406-7fad6ac00e17/484/badge)
 
 # WPF application signing in users with Microsoft and calling the Microsoft Graph
 
@@ -11,6 +15,8 @@ author: jmprieur
 | --- | --- | --- | --- |
 
 This simple sample demonstrates how to use the [Microsoft Authentication Library (MSAL) for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) to get an access token and call the Microsoft Graph (using OAuth 2.0 against the Azure AD v2.0 endpoint).
+
+![Topology](ReadmeFiles/Topology.png)
 
 ## Steps to Run
 
@@ -57,3 +63,9 @@ To provide a recommendation, visit our [User Voice page](https://feedback.azure.
 If you'd like to contribute to this sample, see [CONTRIBUTING.MD](/CONTRIBUTING.md).
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## More information
+For more information see MSAL.NET's conceptual documentation:
+- [Recommended pattern to acquire a token in public client applications](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/AcquireTokenSilentAsync-using-a-cached-token#recommended-call-pattern-in-public-client-applications)
+- [Acquiring tokens ineractively in public client applications](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Acquiring-tokens-interactively) 
+- [Customizing Token cache serialization](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/token-cache-serialization)

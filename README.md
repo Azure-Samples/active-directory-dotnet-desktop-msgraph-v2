@@ -20,7 +20,7 @@ This simple sample demonstrates how to use the [Microsoft Authentication Library
 
 ## Steps to Run
 
-You can get full explaination about this sample, and build it from scratch by going to [Windows desktop .NET guided walkthrough](https://docs.microsoft.com/azure/active-directory/develop/guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro).
+You can get full explanation about this sample, and build it from scratch by going to [Windows desktop .NET guided walkthrough](https://docs.microsoft.com/azure/active-directory/develop/guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro).
 
 ![](https://docs.microsoft.com/en-us/azure/includes/media/active-directory-develop-guidedsetup-windesktop-test/samplescreenshot.png)
 
@@ -34,7 +34,7 @@ This sample is pre-configured. If you just want to quickly run it just:
 2.  Run the application from Visual Studio (Debug | Start without Debugging)
 
 ### [Optional] Use your own application coordinates
-If you want to use your own application coordinates, please follow these instructions instructions:
+If you want to use your own application coordinates, please follow these instructions:
 
 3. Register an Azure AD v2.0 (converged) app. 
     - Navigate to the [App Registration Portal](https://identity.microsoft.com). 
@@ -52,7 +52,7 @@ If you want to use your own application coordinates, please follow these instruc
 
 We use [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) with the community to provide support. We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before. Make sure that your questions or comments are tagged with [msal.dotnet].
 
-If you find and bug in the sample please raise the issue on [GitHub Issues](../../issues).
+If you find a bug in the sample please raise the issue on [GitHub Issues](../../issues).
 
 If you find a bug in msal.Net, please raise the issue on [MSAL.NET GitHub Issues](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues).
 
@@ -67,5 +67,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 ## More information
 For more information see MSAL.NET's conceptual documentation:
 - [Recommended pattern to acquire a token in public client applications](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/AcquireTokenSilentAsync-using-a-cached-token#recommended-call-pattern-in-public-client-applications)
-- [Acquiring tokens ineractively in public client applications](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Acquiring-tokens-interactively) 
+- [Acquiring tokens interactively in public client applications](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Acquiring-tokens-interactively) 
 - [Customizing Token cache serialization](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/token-cache-serialization)

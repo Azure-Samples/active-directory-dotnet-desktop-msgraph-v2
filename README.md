@@ -9,6 +9,8 @@ endpoint: AAD V2
 ---
 ![Build Badge](https://identitydivision.visualstudio.com/_apis/public/build/definitions/a7934fdd-dcde-4492-a406-7fad6ac00e17/484/badge)
 
+> this sample is for MSAL 2.x, if you are interested in the same code for MSAL 1.x, look at the [releases](releases)
+
 # WPF application signing in users with Microsoft and calling the Microsoft Graph
 
 | [Getting Started](https://docs.microsoft.com/azure/active-directory/develop/guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro)| [Library](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki) | [Docs](https://aka.ms/aadv2) | [Support](README.md#community-help-and-support) 

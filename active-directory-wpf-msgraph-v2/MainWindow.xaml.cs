@@ -43,9 +43,11 @@ namespace active_directory_wpf_msgraph_v2
             ResultText.Text = string.Empty;
             TokenInfoText.Text = string.Empty;
 
+            var accounts = await app.GetAccountsAsync();
+
             try
             {
-                authResult = await app.AcquireTokenSilentAsync(scopes, app.Users.FirstOrDefault());
+                authResult = await app.AcquireTokenSilentAsync(scopes, accounts.FirstOrDefault());
             }
             catch (MsalUiRequiredException ex)
             {
@@ -104,13 +106,14 @@ namespace active_directory_wpf_msgraph_v2
         /// <summary>
         /// Sign out the current user
         /// </summary>
-        private void SignOutButton_Click(object sender, RoutedEventArgs e)
+        private async void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
-            if (App.PublicClientApp.Users.Any())
+            var accounts = await App.PublicClientApp.GetAccountsAsync();
+            if (accounts.Any())
             {
                 try
                 {
-                    App.PublicClientApp.Remove(App.PublicClientApp.Users.FirstOrDefault());
+                    await App.PublicClientApp.RemoveAsync(accounts.FirstOrDefault());
                     this.ResultText.Text = "User has signed-out";
                     this.CallGraphButton.Visibility = Visibility.Visible;
                     this.SignOutButton.Visibility = Visibility.Collapsed;
@@ -130,8 +133,7 @@ namespace active_directory_wpf_msgraph_v2
             TokenInfoText.Text = "";
             if (authResult != null)
             {
-                TokenInfoText.Text += $"Name: {authResult.User.Name}" + Environment.NewLine;
-                TokenInfoText.Text += $"Username: {authResult.User.DisplayableId}" + Environment.NewLine;
+                TokenInfoText.Text += $"Username: {authResult.Account.Username}" + Environment.NewLine;
                 TokenInfoText.Text += $"Token Expires: {authResult.ExpiresOn.ToLocalTime()}" + Environment.NewLine;
                 TokenInfoText.Text += $"Access Token: {authResult.AccessToken}" + Environment.NewLine;
             }

@@ -5,7 +5,7 @@
 
   "Sample": {
     "Title": "Calling Microsoft Graph from a Windows Desktop App (WPF)",
-    "Level": 400,
+    "Level": 200,
     "Client": ".NET Framework 4.5, WPF, MSAL"
   },
   "AppRegistrations": [

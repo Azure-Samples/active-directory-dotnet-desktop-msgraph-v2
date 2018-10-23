@@ -38,15 +38,43 @@ This sample is pre-configured. If you just want to quickly run it just:
 ### [Optional] Use your own application coordinates
 If you want to use your own application coordinates, please follow these instructions:
 
-3. Register an Azure AD v2.0 (converged) app. 
-    - Navigate to the [App Registration Portal](https://identity.microsoft.com). 
-    - Go to the the `My Apps` page, click `Add an App`, and name your app.  
-    - Set a platform by clicking `Add Platform`, select `Native`.
-    - Copy to the clipboard your Application Id
+#### Choose the Azure AD tenant where you want to create your applications
 
-4. In the `App.xaml.cs` file, set your application/client id copied from the App Registration Portal.
+1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
+1. If your account gives you access to more than one tenant, you can select the Azure AD tenant where you want to add applications:
 
-    ``private static string ClientId = "[Application Id pasted from the application registration portal]"``
+   - click on your account on the top-right of the portal
+   - then, in the menu, click on **Switch Directory**.
+   - Once the *Directory + subscription* pane opens, choose the Active Directory tenant where you wish to register your application, from the *Favorites* or *All Directories* list.
+
+1. In the left-hand navigation pane, select the **Azure Active Directory** service
+   > If you don't see *Azure Active Directory*, click on **All services** in the left-hand navigation pane, and choose **Azure Active Directory**.
+
+#### Register the client app (WpfApp)
+
+1. In the  **Azure Active Directory** pane, click on **App registrations (Preview)** and choose **New registration**. Then:
+
+   - In the *Name* section, enter the user-facing display name for the application, for example `WpfApp`
+   - In the *Supported account types* section, select **Accounts in this organizational directory only ({*tenant name*})**
+   - Click **Register** to create the application.
+
+1. On the app *Overview* page:
+   - find the *Application (client) ID* value and record it for later. You'll need it to configure the Visual Studio configuration file for this project.
+
+1. In the list of pages for the app, click on **Authentication** to set authentication properties
+
+   - In the *Redirect URLs* | *Suggested Redirect URLs for public clients (mobile, desktop)* section, check **urn:ietf:wg:oauth:2.0:oob**
+
+1. Configure Permissions for your application. To that extent in the list of pages click on **API permissions**
+   - click the **Add a permission** button and then,
+   - Ensure that the **Microsoft APIs** tab is selected
+   - In the *Commonly used Microsoft APIs* section, click on **Microsoft Graph**
+   - In the **Delegated permissions** section, ensure that the right permissions are checked: **User.Read**. Use the search box if necessary.
+
+#### Configure the sample to use your Azure AD tenant
+
+1. Open the `active-directory-wpf-msgraph-v2\App.xaml.cs` file
+1. Find the app key `ClientId` and replace the existing value with the application ID (clientId) of the `WpfApp` application copied from the Azure portal.
 
 5. Run the application from Visual Studio (Debug | Start without Debugging)
 
@@ -68,6 +96,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 ## More information
 For more information see MSAL.NET's conceptual documentation:
+- [Quickstart: Register an application with the Microsoft identity platform (Preview)](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
+- [Quickstart: Configure a client application to access web APIs (Preview)](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-access-web-apis)
 - [Recommended pattern to acquire a token in public client applications](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/AcquireTokenSilentAsync-using-a-cached-token#recommended-call-pattern-in-public-client-applications)
 - [Acquiring tokens interactively in public client applications](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Acquiring-tokens-interactively) 
 - [Customizing Token cache serialization](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/token-cache-serialization)

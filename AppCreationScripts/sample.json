@@ -1,0 +1,47 @@
+{
+  "Sample": {
+    "Title": "Windows Desktop .NET (WPF) application using MSAL.NET to acquire an access token and call Microsoft Graph API",
+    "Level": 200,
+    "Client": "Desktop (WPF)",
+    "Service": "Microsoft Graph",
+    "RepositoryUrl": "active-directory-dotnet-desktop-msgraph-v2",
+    "Endpoint": "AAD v2.0"
+  },
+
+  /*
+    This section describes the Azure AD Applications to configure, and their dependencies
+  */
+  "AADApps": [
+    {
+      "Id": "client",
+      "Name": "WpfApp",
+      "Kind" :  "Desktop",
+      "RequiredResourcesAccess": [
+        {
+          "Resource": "Microsoft Graph",
+          "DelegatedPermissions": [ "User.Read" ]
+        }
+      ]
+    }
+  ],
+
+  /*
+    This section describes how to update the code in configuration files from the apps coordinates, once the apps
+    are created in Azure AD.
+    Each section describes a configuration file, for one of the apps, it's type (XML, JSon, plain text), its location
+    with respect to the root of the sample, and the mappping (which string in the config file is mapped to which value
+  */
+  "CodeConfiguration": [
+    {
+      "App": "client",
+      "SettingKind": "Code",
+      "SettingFile": "\\..\\active-directory-wpf-msgraph-v2\\App.xaml.cs",
+      "Mappings": [
+        {
+          "key": "ClientId",
+          "value": ".AppId"
+        }
+      ]
+    }
+  ]
+}

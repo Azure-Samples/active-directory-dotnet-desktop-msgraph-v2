@@ -62,7 +62,7 @@ If you want to use your own application coordinates, please follow these instruc
    - In the *Commonly used Microsoft APIs* section, click on **Microsoft Graph**
    - In the **Delegated permissions** section, ensure that the right permissions are checked: **User.Read**. Use the search box if necessary.
 
-#### Configure the sample to use your Azure AD tenant
+#### Configure the code to use your application's coordinates
 
 1. Open the `active-directory-wpf-msgraph-v2\App.xaml.cs` file
 1. Find the app key `ClientId` and replace the existing value with the application ID (clientId) of the `WpfApp` application copied from the Azure portal.

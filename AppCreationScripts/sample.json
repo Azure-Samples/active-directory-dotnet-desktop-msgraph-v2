@@ -15,7 +15,7 @@
     {
       "Id": "client",
       "Name": "WpfApp",
-      "IsPublicClient": true,
+      "Kind" :  "Desktop",
       "RequiredResourcesAccess": [
         {
           "Resource": "Microsoft Graph",

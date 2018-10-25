@@ -41,30 +41,21 @@ If you want to use your own application coordinates, please follow these instruc
 #### Choose the Azure AD tenant where you want to create your applications
 
 1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account or a personal Microsoft account.
-1. If your account gives you access to more than one tenant, you can select the Azure AD tenant where you want to add applications:
-
-   - click on your account on the top-right of the portal
-   - then, in the menu, click on **Switch Directory**.
-   - Once the *Directory + subscription* pane opens, choose the Active Directory tenant where you wish to register your application, from the *Favorites* or *All Directories* list.
-
-1. In the left-hand navigation pane, select the **Azure Active Directory** service
-   > If you don't see *Azure Active Directory*, click on **All services** in the left-hand navigation pane, and choose **Azure Active Directory**.
+1. If your account gives you access to more than one tenant, select your account in the top right corner, and set your portal session to the desired Azure AD tenant
+   (using **Switch Directory**).
+1. In the left-hand navigation pane, select the **Azure Active Directory** service, and then select **App registrations (Preview)**.
 
 #### Register the client app (WpfApp)
 
-1. In the  **Azure Active Directory** pane, click on **App registrations (Preview)** and choose **New registration**. Then:
-
-   - In the *Name* section, enter the user-facing display name for the application, for example `WpfApp`
-   - In the *Supported account types* section, select **Accounts in this organizational directory only ({*tenant name*})**
-   - Click **Register** to create the application.
-
-1. On the app *Overview* page:
-   - find the *Application (client) ID* value and record it for later. You'll need it to configure the Visual Studio configuration file for this project.
-
-1. In the list of pages for the app, click on **Authentication** to set authentication properties
-
-   - In the *Redirect URLs* | *Suggested Redirect URLs for public clients (mobile, desktop)* section, check **urn:ietf:wg:oauth:2.0:oob**
-
+1. In **App registrations (Preview)** page, select **New registration**.
+1. When the **Register an application page** appears, enter your application's registration information:
+   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `WpfApp`.
+   - In the **Supported account types** section, select **Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com)**.
+    - Select **Register** to create the application.
+1. On the app **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the Visual Studio configuration file for this project.
+1. In the list of pages for the app, select **Authentication**.
+   - In the **Redirect URLs** | **Suggested Redirect URLs for public clients (mobile, desktop)** section, check **urn:ietf:wg:oauth:2.0:oob**
+ 1. Select **Save**.
 1. Configure Permissions for your application. To that extent in the list of pages click on **API permissions**
    - click the **Add a permission** button and then,
    - Ensure that the **Microsoft APIs** tab is selected

@@ -73,7 +73,7 @@ namespace active_directory_wpf_msgraph_v2
         public static void AfterAccessNotification(TokenCacheNotificationArgs args)
         {
             // if the access operation resulted in a cache update
-            if (args.TokenCache.HasStateChanged)
+            if (args.HasStateChanged)
             {
                 lock (FileLock)
                 {
@@ -83,8 +83,6 @@ namespace active_directory_wpf_msgraph_v2
                                                              null, 
                                                              DataProtectionScope.CurrentUser)
                                       );
-                    // once the write operationtakes place restore the HasStateChanged bit to filse
-                    args.TokenCache.HasStateChanged = false;
                 }
             }
         }

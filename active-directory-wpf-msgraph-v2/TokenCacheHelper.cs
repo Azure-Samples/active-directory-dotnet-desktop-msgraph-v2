@@ -25,6 +25,7 @@
 //
 //------------------------------------------------------------------------------
 
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using Microsoft.Identity.Client;
@@ -33,24 +34,6 @@ namespace active_directory_wpf_msgraph_v2
 {
     static class TokenCacheHelper
     {
- 
-        /// <summary>
-        /// Get the user token cache
-        /// </summary>
-        /// <returns></returns>
-        public static TokenCache GetUserCache()
-        {
-            if (usertokenCache == null)
-            {
-                usertokenCache = new TokenCache();
-                usertokenCache.SetBeforeAccess(BeforeAccessNotification);
-                usertokenCache.SetAfterAccess(AfterAccessNotification);
-            }
-            return usertokenCache;
-        }
-
-        static TokenCache usertokenCache;
-
         /// <summary>
         /// Path to the token cache
         /// </summary>
@@ -85,6 +68,12 @@ namespace active_directory_wpf_msgraph_v2
                                       );
                 }
             }
+        }
+
+        internal static void Bind(ITokenCache tokenCache)
+        {
+            tokenCache.SetBeforeAccess(BeforeAccessNotification);
+            tokenCache.SetAfterAccess(AfterAccessNotification);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Identity.Client;
+using Microsoft.Identity.Client.AppConfig;
 
 namespace active_directory_wpf_msgraph_v2
 {
@@ -16,8 +17,10 @@ namespace active_directory_wpf_msgraph_v2
     {
         static App()
         {
-            string authority = $"https://login.microsoftonline.com/{Tenant}";
-            _clientApp = new PublicClientApplication(ClientId, authority, TokenCacheHelper.GetUserCache());
+            _clientApp = PublicClientApplicationBuilder.Create(ClientId)
+                .AddKnownAadAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount, true)
+                .Build();
+            TokenCacheHelper.Bind(_clientApp.UserTokenCache);
         }
 
         // Below are the clientId (Application Id) of your app registration and the tenant information. 
@@ -29,10 +32,13 @@ namespace active_directory_wpf_msgraph_v2
         //   - for any Work or School acounts, or Microsoft personal account, use common
         //   - for Microsoft Personal account, use consumers
         private static string ClientId = "0b8b0665-bc13-4fdc-bd72-e0227b9fc011";
+
+        // Note: Tenant is important for the quickstart. We'd need to check with Andre/Portal if we
+        // want to change to the AadAuthorityAudience.
         private static string Tenant = "common";
 
-        private static PublicClientApplication _clientApp ;
+        private static IPublicClientApplication _clientApp ;
 
-        public static PublicClientApplication PublicClientApp { get { return _clientApp; } }
+        public static PublicClientApplication PublicClientApp { get { return _clientApp as PublicClientApplication; } }
     }
 }

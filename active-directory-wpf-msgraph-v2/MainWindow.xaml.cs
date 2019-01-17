@@ -47,7 +47,9 @@ namespace active_directory_wpf_msgraph_v2
 
             try
             {
-                authResult = await app.AcquireTokenSilentAsync(scopes, accounts.FirstOrDefault());
+                authResult = await app.AcquireTokenSilent(scopes, null)
+                    .WithAccount(accounts.FirstOrDefault())
+                    .ExecuteAsync(new System.Threading.CancellationToken());
             }
             catch (MsalUiRequiredException ex)
             {
@@ -57,7 +59,9 @@ namespace active_directory_wpf_msgraph_v2
 
                 try
                 {
-                    authResult = await app.AcquireTokenAsync(scopes);
+                    authResult = await app.AcquireTokenInteractive(scopes, null)
+                        .WithAccount(accounts.FirstOrDefault())
+                        .ExecuteAsync(new System.Threading.CancellationToken());
                 }
                 catch (MsalException msalex)
                 {

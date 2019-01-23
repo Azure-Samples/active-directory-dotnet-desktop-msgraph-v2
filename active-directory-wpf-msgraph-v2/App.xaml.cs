@@ -18,7 +18,7 @@ namespace active_directory_wpf_msgraph_v2
         static App()
         {
             _clientApp = PublicClientApplicationBuilder.Create(ClientId)
-                .AddKnownAadAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount, true)
+                .WithAadAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount)
                 .Build();
             TokenCacheHelper.Bind(_clientApp.UserTokenCache);
         }
@@ -39,6 +39,6 @@ namespace active_directory_wpf_msgraph_v2
 
         private static IPublicClientApplication _clientApp ;
 
-        public static PublicClientApplication PublicClientApp { get { return _clientApp as PublicClientApplication; } }
+        public static IPublicClientApplication PublicClientApp { get { return _clientApp; } }
     }
 }

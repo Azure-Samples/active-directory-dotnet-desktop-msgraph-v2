@@ -1,18 +1,9 @@
 ﻿using Microsoft.Identity.Client;
+using Microsoft.Identity.Client.ApiConfig;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace active_directory_wpf_msgraph_v2
 {
@@ -47,8 +38,7 @@ namespace active_directory_wpf_msgraph_v2
 
             try
             {
-                authResult = await app.AcquireTokenSilent(scopes, null)
-                    .WithAccount(accounts.FirstOrDefault())
+                authResult = await (app as PublicClientApplication).AcquireTokenSilent(scopes, accounts.FirstOrDefault())
                     .ExecuteAsync(new System.Threading.CancellationToken());
             }
             catch (MsalUiRequiredException ex)
@@ -61,6 +51,7 @@ namespace active_directory_wpf_msgraph_v2
                 {
                     authResult = await app.AcquireTokenInteractive(scopes, null)
                         .WithAccount(accounts.FirstOrDefault())
+                        .WithPrompt(Prompt.SelectAccount)
                         .ExecuteAsync(new System.Threading.CancellationToken());
                 }
                 catch (MsalException msalex)

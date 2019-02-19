@@ -192,7 +192,7 @@ Function ConfigureApplications
    # Update config file for 'client'
    $configFile = $pwd.Path + "\..\active-directory-wpf-msgraph-v2\App.xaml.cs"
    Write-Host "Updating the sample code ($configFile)"
-   $dictionary = @{ "ClientId" = $clientAadApplication.AppId };
+   $dictionary = @{ "string ClientId" = $clientAadApplication.AppId };
    UpdateTextFile -configFilePath $configFile -dictionary $dictionary
 
    Add-Content -Value "</tbody></table></body></html>" -Path createdApps.html  

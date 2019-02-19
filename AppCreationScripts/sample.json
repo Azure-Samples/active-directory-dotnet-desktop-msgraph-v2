@@ -39,7 +39,7 @@
       "SettingFile": "\\..\\active-directory-wpf-msgraph-v2\\App.xaml.cs",
       "Mappings": [
         {
-          "key": "ClientId",
+          "key": "string ClientId",
           "value": ".AppId"
         }
       ]

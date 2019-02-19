@@ -15,7 +15,8 @@
     {
       "Id": "client",
       "Name": "WpfApp",
-      "Kind" :  "Desktop",
+      "Kind": "Desktop",
+      "UsesROPCOrIWA": false,
       "RequiredResourcesAccess": [
         {
           "Resource": "Microsoft Graph",

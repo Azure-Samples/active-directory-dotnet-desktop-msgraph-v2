@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using Microsoft.Identity.Client;
+﻿using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.AppConfig;
+using System.Windows;
 
 namespace active_directory_wpf_msgraph_v2
 {
@@ -18,7 +12,7 @@ namespace active_directory_wpf_msgraph_v2
         static App()
         {
             _clientApp = PublicClientApplicationBuilder.Create(ClientId)
-                .WithAadAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount)
+                .WithAuthority(AzureCloudInstance.AzurePublic, Tenant)
                 .Build();
             TokenCacheHelper.Bind(_clientApp.UserTokenCache);
         }

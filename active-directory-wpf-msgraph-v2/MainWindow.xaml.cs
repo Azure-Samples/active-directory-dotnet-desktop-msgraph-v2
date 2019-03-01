@@ -1,5 +1,4 @@
 ﻿using Microsoft.Identity.Client;
-using Microsoft.Identity.Client.ApiConfig;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,11 +34,12 @@ namespace active_directory_wpf_msgraph_v2
             TokenInfoText.Text = string.Empty;
 
             var accounts = await app.GetAccountsAsync();
+            var firstAccount = accounts.FirstOrDefault();
 
             try
             {
-                authResult = await (app as PublicClientApplication).AcquireTokenSilent(scopes, accounts.FirstOrDefault())
-                    .ExecuteAsync(new System.Threading.CancellationToken());
+                authResult = await app.AcquireTokenSilent(scopes, firstAccount)
+                    .ExecuteAsync();
             }
             catch (MsalUiRequiredException ex)
             {
@@ -49,10 +49,10 @@ namespace active_directory_wpf_msgraph_v2
 
                 try
                 {
-                    authResult = await app.AcquireTokenInteractive(scopes, null)
+                    authResult = await app.AcquireTokenInteractive(scopes, this)
                         .WithAccount(accounts.FirstOrDefault())
                         .WithPrompt(Prompt.SelectAccount)
-                        .ExecuteAsync(new System.Threading.CancellationToken());
+                        .ExecuteAsync();
                 }
                 catch (MsalException msalex)
                 {

@@ -45,11 +45,11 @@ namespace active_directory_wpf_msgraph_v2
         {
             lock (FileLock)
             {
-                args.TokenCache.Deserialize(File.Exists(CacheFilePath)
-                    ? ProtectedData.Unprotect(File.ReadAllBytes(CacheFilePath),
-                                              null,
-                                              DataProtectionScope.CurrentUser)
-                    : null);
+                args.TokenCache.DeserializeMsalV3(File.Exists(CacheFilePath)
+                        ? ProtectedData.Unprotect(File.ReadAllBytes(CacheFilePath),
+                                                 null,
+                                                 DataProtectionScope.CurrentUser)
+                        : null);
             }
         }
 
@@ -62,7 +62,7 @@ namespace active_directory_wpf_msgraph_v2
                 {
                     // reflect changesgs in the persistent store
                     File.WriteAllBytes(CacheFilePath,
-                                       ProtectedData.Protect(args.TokenCache.Serialize(), 
+                                       ProtectedData.Protect(args.TokenCache.SerializeMsalV3(), 
                                                              null, 
                                                              DataProtectionScope.CurrentUser)
                                       );

@@ -9,7 +9,7 @@ endpoint: AAD V2
 ---
 ![Build Badge](https://identitydivision.visualstudio.com/_apis/public/build/definitions/a7934fdd-dcde-4492-a406-7fad6ac00e17/484/badge)
 
-> This sample is for MSAL 2.x, if you are interested in the same code for MSAL 1.x, look at the [releases](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/releases) tab
+> This sample is for MSAL 2.x, if you are interested in the same code for MSAL 3.x, look at the [jmprieur/Msal3.0.0-preview](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/tree/jmprieur/Msal3.0.0-preview) branch. This branch will be merged when MSAL.NET reaches 3.1
 
 # WPF application signing in users with Microsoft and calling the Microsoft Graph
 

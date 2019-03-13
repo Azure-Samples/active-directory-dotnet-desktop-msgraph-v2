@@ -49,10 +49,11 @@ namespace active_directory_wpf_msgraph_v2
 
                 try
                 {
-                    authResult = await app.AcquireTokenInteractive(scopes, null)
+                    authResult = await app.AcquireTokenInteractive(scopes, this)
                         .WithAccount(accounts.FirstOrDefault())
                         .WithPrompt(Prompt.SelectAccount)
-                        .ExecuteAsync(new System.Threading.CancellationToken());
+                        .WithClaims(ex.Claims)
+                        .ExecuteAsync();
                 }
                 catch (MsalException msalex)
                 {

@@ -18,9 +18,9 @@ namespace active_directory_wpf_msgraph_v2
         static App()
         {
             _clientApp = PublicClientApplicationBuilder.Create(ClientId)
-                .WithAadAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount)
+                .WithAuthority(AzureCloudInstance.AzurePublic, Tenant)
                 .Build();
-            TokenCacheHelper.Bind(_clientApp.UserTokenCache);
+            TokenCacheHelper.EnableSerialization(_clientApp.UserTokenCache);
         }
 
         // Below are the clientId (Application Id) of your app registration and the tenant information. 

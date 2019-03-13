@@ -37,7 +37,7 @@ namespace active_directory_wpf_msgraph_v2
         /// <summary>
         /// Path to the token cache
         /// </summary>
-        public static readonly string CacheFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin";
+        public static readonly string CacheFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin3";
 
         private static readonly object FileLock = new object();
 
@@ -45,11 +45,15 @@ namespace active_directory_wpf_msgraph_v2
         {
             lock (FileLock)
             {
-                args.TokenCache.Deserialize(File.Exists(CacheFilePath)
-                    ? ProtectedData.Unprotect(File.ReadAllBytes(CacheFilePath),
-                                              null,
-                                              DataProtectionScope.CurrentUser)
-                    : null);
+                if (File.Exists(CacheFilePath))
+                {
+                    args.TokenCache.DeserializeMsalV3(File.Exists(CacheFilePath)
+                         ? ProtectedData.Unprotect(File.ReadAllBytes(CacheFilePath),
+                                                   null,
+                                                   DataProtectionScope.CurrentUser)
+                         : null);
+                }
+ 
             }
         }
 
@@ -62,7 +66,7 @@ namespace active_directory_wpf_msgraph_v2
                 {
                     // reflect changesgs in the persistent store
                     File.WriteAllBytes(CacheFilePath,
-                                       ProtectedData.Protect(args.TokenCache.Serialize(), 
+                                       ProtectedData.Protect(args.TokenCache.SerializeMsalV3(), 
                                                              null, 
                                                              DataProtectionScope.CurrentUser)
                                       );
@@ -70,7 +74,7 @@ namespace active_directory_wpf_msgraph_v2
             }
         }
 
-        internal static void Bind(ITokenCache tokenCache)
+        internal static void EnableSerialization(ITokenCache tokenCache)
         {
             tokenCache.SetBeforeAccess(BeforeAccessNotification);
             tokenCache.SetAfterAccess(AfterAccessNotification);

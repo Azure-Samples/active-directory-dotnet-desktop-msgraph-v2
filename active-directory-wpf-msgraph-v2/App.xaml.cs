@@ -1,5 +1,4 @@
 ﻿using Microsoft.Identity.Client;
-using Microsoft.Identity.Client.AppConfig;
 using System.Windows;
 
 namespace active_directory_wpf_msgraph_v2

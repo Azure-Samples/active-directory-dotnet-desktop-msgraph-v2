@@ -51,6 +51,7 @@ namespace active_directory_wpf_msgraph_v2
                 {
                     authResult = await app.AcquireTokenInteractive(scopes, this)
                         .WithAccount(accounts.FirstOrDefault())
+                        .WithPrompt(Prompt.SelectAccount)
                         .ExecuteAsync();
                 }
                 catch (MsalException msalex)

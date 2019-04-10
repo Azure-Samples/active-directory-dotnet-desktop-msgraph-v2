@@ -22,7 +22,7 @@ namespace active_directory_wpf_msgraph_v2
         // - Te content of Tenant by the information about the accounts allowed to sign-in in your application:
         //   - For Work or School account in your org, use your tenant ID, or domain
         //   - for any Work or School accounts, use organizations
-        //   - for any Work or School acounts, or Microsoft personal account, use common
+        //   - for any Work or School accounts, or Microsoft personal account, use common
         //   - for Microsoft Personal account, use consumers
         private static string ClientId = "0b8b0665-bc13-4fdc-bd72-e0227b9fc011";
 

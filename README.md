@@ -47,8 +47,8 @@ If you want to use your own application coordinates, please follow these instruc
 
 #### Register the client app (WpfApp)
 
-1. In **App registrations (Preview)** page, select **New registration**.
-1. When the **Register an application page** appears, enter your application's registration information:
+1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.
+1. Select **New registration**.
    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `WpfApp`.
    - In the **Supported account types** section, select **Accounts in any organizational directory and personal Microsoft accounts (e.g. Skype, Xbox, Outlook.com)**.
     - Select **Register** to create the application.

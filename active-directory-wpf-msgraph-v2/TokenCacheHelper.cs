@@ -37,7 +37,7 @@ namespace active_directory_wpf_msgraph_v2
         /// <summary>
         /// Path to the token cache
         /// </summary>
-        public static readonly string CacheFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin3";
+        public static readonly string CacheFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.json";
 
         private static readonly object FileLock = new object();
 

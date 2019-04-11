@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Interop;
 
 namespace active_directory_wpf_msgraph_v2
 {
@@ -49,8 +50,9 @@ namespace active_directory_wpf_msgraph_v2
 
                 try
                 {
-                    authResult = await app.AcquireTokenInteractive(scopes, this)
+                    authResult = await app.AcquireTokenInteractive(scopes)
                         .WithAccount(accounts.FirstOrDefault())
+                        .WithParentActivityOrWindow(new WindowInteropHelper(this).Handle) // optional, used to center the browser on the window
                         .WithPrompt(Prompt.SelectAccount)
                         .ExecuteAsync();
                 }

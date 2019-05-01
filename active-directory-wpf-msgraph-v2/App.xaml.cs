@@ -12,6 +12,7 @@ namespace active_directory_wpf_msgraph_v2
         {
             _clientApp = PublicClientApplicationBuilder.Create(ClientId)
                 .WithAuthority(AzureCloudInstance.AzurePublic, Tenant)
+                .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
                 .Build();
             TokenCacheHelper.EnableSerialization(_clientApp.UserTokenCache);
         }

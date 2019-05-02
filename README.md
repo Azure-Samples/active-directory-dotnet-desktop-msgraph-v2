@@ -54,8 +54,8 @@ If you want to use your own application coordinates, please follow these instruc
     - Select **Register** to create the application.
 1. On the app **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the Visual Studio configuration file for this project.
 1. In the list of pages for the app, select **Authentication**.
-   - In the **Redirect URLs** | **Suggested Redirect URLs for public clients (mobile, desktop)** section, check **urn:ietf:wg:oauth:2.0:oob**
- 1. Select **Save**.
+   1. In the **Redirect URIs** list, select for **TYPE** Public client (mobile & desktop). Then paste this value **urn:ietf:wg:oauth:2.0:oob** in the **REDIRECT URI** column. 
+   1. Select **Save**.
 1. Configure Permissions for your application. To that extent in the list of pages click on **API permissions**
    - click the **Add a permission** button and then,
    - Ensure that the **Microsoft APIs** tab is selected

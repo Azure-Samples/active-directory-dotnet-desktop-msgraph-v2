@@ -12,6 +12,7 @@ namespace active_directory_wpf_msgraph_v2
         {
             _clientApp = PublicClientApplicationBuilder.Create(ClientId)
                 .WithAuthority(AzureCloudInstance.AzurePublic, Tenant)
+                //Sets the default redirect URI to https://login.microsoftonline.com/common/oauth2/nativeclient for .NET Framework
                 .WithDefaultRedirectUri()
                 .Build();
             TokenCacheHelper.EnableSerialization(_clientApp.UserTokenCache);

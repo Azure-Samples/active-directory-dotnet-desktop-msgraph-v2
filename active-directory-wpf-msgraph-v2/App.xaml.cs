@@ -24,11 +24,11 @@ namespace active_directory_wpf_msgraph_v2
         //   - for any Work or School accounts, use organizations
         //   - for any Work or School accounts, or Microsoft personal account, use common
         //   - for Microsoft Personal account, use consumers
-        private static string ClientId = "0b8b0665-bc13-4fdc-bd72-e0227b9fc011";
+        private static string ClientId = "Enter_the_Application_Id_here";
 
         // Note: Tenant is important for the quickstart. We'd need to check with Andre/Portal if we
         // want to change to the AadAuthorityAudience.
-        private static string Tenant = "common";
+        private static string Tenant = "Enter_the_Tenant_Info_Here";
 
         private static IPublicClientApplication _clientApp ;
 

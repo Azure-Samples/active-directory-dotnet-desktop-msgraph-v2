@@ -1,12 +1,13 @@
 ---
-services: active-directory
-platforms: dotnet
-author: jmprieur
-level: 200
-client: .NET Framework 4.5 WPF 
-service: Microsoft Graph
-endpoint: AAD V2
+page_type: sample
+languages:
+- csharp
+products:
+- azure
+description: "This simple sample demonstrates how to use the Microsoft Authentication Library (MSAL) for .NET to get an access token and call the Microsoft Graph (using OAuth 2.0 against the Azure AD v2.0 endpoint)."
+urlFragment: active-directory-dotnet-desktop-msgraph-v2
 ---
+
 ![Build Badge](https://identitydivision.visualstudio.com/_apis/public/build/definitions/a7934fdd-dcde-4492-a406-7fad6ac00e17/484/badge)
 
 > This sample is for MSAL 2.x, if you are interested in the same code for MSAL 3.x, look at the [updateToMsal3x](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/tree/jmprieur/updateToMsal3x) branch. This branch will be merged when MSAL.NET reaches 3.1

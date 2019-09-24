@@ -1,20 +1,13 @@
 ---
-services: active-directory
-platforms: dotnet
-author: jmprieur
-level: 200
-client: .NET Framework 4.5 WPF 
-service: Microsoft Graph
-endpoint: Microsoft identity platform
 page_type: sample
 languages:
-  - csharp  
+- csharp  
 products:
-  - azure
-  - azure-active-directory  
-  - dotnet
-  - office-ms-graph
-description: "This sample demonstrates how to use the MSAL.NET to get an access token and call the Microsoft Graph (using OAuth 2.0 against the Microsoft identity platform endpoint)."
+- azure
+- azure-active-directory  
+- dotnet
+- ms-graph
+description: "This sample demonstrates how to use the MSAL.NET to get an access token and call the Microsoft Graph."
 ---
 ![Build Badge](https://identitydivision.visualstudio.com/_apis/public/build/definitions/a7934fdd-dcde-4492-a406-7fad6ac00e17/484/badge)
 

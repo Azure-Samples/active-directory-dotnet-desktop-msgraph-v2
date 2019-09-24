@@ -4,7 +4,7 @@ languages:
 - csharp
 products:
 - azure
-description: "This simple sample demonstrates how to use the Microsoft Authentication Library (MSAL) for .NET to get an access token and call the Microsoft Graph (using OAuth 2.0 against the Azure AD v2.0 endpoint)."
+description: "This sample demonstrates how to use the Microsoft Authentication Library to get an access token and call the Microsoft Graph."
 urlFragment: active-directory-dotnet-desktop-msgraph-v2
 ---
 

@@ -11,7 +11,7 @@ description: "This sample demonstrates how to use the MSAL.NET to get an access 
 ---
 ![Build Badge](https://identitydivision.visualstudio.com/_apis/public/build/definitions/a7934fdd-dcde-4492-a406-7fad6ac00e17/484/badge)
 
-> This sample is for MSAL 3.x, if you are interested in the same code for MSAL 2.x, look at the [releases](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/releases) tab or the [previousVersions/Msal2x](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/tree/previousVersions/Msal2x) branch
+> This sample is for MSAL 4.x, if you are interested in the same code for MSAL 2.x, look at the [releases](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/releases) tab or the [previousVersions/Msal2x](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/tree/previousVersions/Msal2x) branch
 
 # WPF application signing in users with Microsoft and calling the Microsoft Graph
 

@@ -1,24 +1,17 @@
 ---
-services: active-directory
-platforms: dotnet
-author: jmprieur
-level: 200
-client: .NET Framework 4.5 WPF 
-service: Microsoft Graph
-endpoint: Microsoft identity platform
 page_type: sample
 languages:
-  - csharp  
+- csharp  
 products:
-  - azure
-  - azure-active-directory  
-  - dotnet
-  - office-ms-graph
-description: "This sample demonstrates how to use the MSAL.NET to get an access token and call the Microsoft Graph (using OAuth 2.0 against the Microsoft identity platform endpoint)."
+- azure
+- azure-active-directory  
+- dotnet
+- ms-graph
+description: "This sample demonstrates how to use the MSAL.NET to get an access token and call the Microsoft Graph."
 ---
 ![Build Badge](https://identitydivision.visualstudio.com/_apis/public/build/definitions/a7934fdd-dcde-4492-a406-7fad6ac00e17/484/badge)
 
-> This sample is for MSAL 3.x, if you are interested in the same code for MSAL 2.x, look at the [releases](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/releases) tab or the [previousVersions/Msal2x](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/tree/previousVersions/Msal2x) branch
+> This sample is for MSAL 4.x, if you are interested in the same code for MSAL 2.x, look at the [releases](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/releases) tab or the [previousVersions/Msal2x](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/tree/previousVersions/Msal2x) branch
 
 # WPF application signing in users with Microsoft and calling the Microsoft Graph
 

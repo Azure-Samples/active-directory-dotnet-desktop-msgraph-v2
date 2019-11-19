@@ -38,6 +38,7 @@ This sample is pre-configured. If you just want to quickly run it just:
 2.  Run the application from Visual Studio (Debug | Start without Debugging)
 
 ### [Optional] Use your own application coordinates
+
 If you want to use your own application coordinates, please follow these instructions:
 
 #### Choose the Azure AD tenant where you want to create your applications
@@ -80,6 +81,8 @@ If you find a bug in the sample please raise the issue on [GitHub Issues](../../
 If you find a bug in msal.Net, please raise the issue on [MSAL.NET GitHub Issues](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues).
 
 To provide a recommendation, visit our [User Voice page](https://feedback.azure.com/forums/169401-azure-active-directory).
+
+- Developers who wish to gain good familiarity of programming for Microsoft Graph are advised to go through the [An introduction to Microsoft Graph for developers](https://www.youtube.com/watch?v=EBbnpFdB92A) recorded session.
 
 ## Contributing
 

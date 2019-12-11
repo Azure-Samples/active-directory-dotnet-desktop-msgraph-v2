@@ -15,7 +15,7 @@
       "x-ms-version": "2.0",
       "replyUrlsWithType": [
         {
-          "url": "urn:ietf:wg:oauth:2.0:oob",
+          "url": "https://login.microsoftonline.com/common/oauth2/nativeclient",
           "type": "InstalledClient"
         }
       ],

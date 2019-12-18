@@ -34,11 +34,11 @@
   "CodeConfiguration": [
     {
       "App": "client",
-      "SettingKind": "Code",
+      "SettingKind": "Replace",
       "SettingFile": "\\..\\active-directory-wpf-msgraph-v2\\App.xaml.cs",
       "Mappings": [
         {
-          "key": "ClientId",
+          "key": "4a1aa1d5-c567-49d0-ad0b-cd957a47f842",
           "value": ".AppId"
         }
       ]

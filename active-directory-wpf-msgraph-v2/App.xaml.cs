@@ -6,6 +6,8 @@ namespace active_directory_wpf_msgraph_v2
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    
+    // To change from Microsoft public cloud to a national cloud, use another value of AzureCloudInstance
     public partial class App : Application
     {
         static App()

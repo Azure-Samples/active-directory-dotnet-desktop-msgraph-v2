@@ -12,7 +12,7 @@ namespace active_directory_wpf_msgraph_v2
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Set the API Endpoint to Graph 'me' endpoint
+        //Set the API Endpoint to Graph 'me' endpoint. To change from Microsoft public cloud to a national cloud, use another value of graphAPIEndpoint.
         string graphAPIEndpoint = "https://graph.microsoft.com/v1.0/me";
 
         //Set the scope for API call to user.read

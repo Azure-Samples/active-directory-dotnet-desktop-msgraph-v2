@@ -1,8 +1,4 @@
 {
-  /*
-  This section describes the Azure AD  Applications to configure, and their dependencies
-  */
-
   "Sample": {
     "Title": "Calling Microsoft Graph from a Windows Desktop App (WPF)",
     "Level": 200,
@@ -37,7 +33,7 @@
 		      "settingFile": "/active-directory-wpf-msgraph-v2/App.xaml.cs", 
 		      "replaceTokens": 
             {
-              "appId": "4a1aa1d5-c567-49d0-ad0b-cd957a47f8421",
+              "appId": "4a1aa1d5-c567-49d0-ad0b-cd957a47f842",
               "tenantId": "common"
 			      }
          }

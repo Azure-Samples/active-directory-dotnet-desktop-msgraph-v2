@@ -69,7 +69,7 @@ If you want to use your own application coordinates, please follow these instruc
 
 1. Open the `active-directory-wpf-msgraph-v2\App.xaml.cs` file
 1. Find the app key `ClientId` and replace the existing value with the application ID (clientId) of the `WpfApp` application copied from the Azure portal.
-1. If connecting to a national cloud, open the 'active-directory-wpf-msgraph-v2\MainWindow.xaml.cs' file and update string graphAPIEndpoint to the appropriate endpoint.
+1. If connecting to a national cloud, open the 'active-directory-wpf-msgraph-v2\MainWindow.xaml.cs' file and update string `graphAPIEndpoint` to the appropriate endpoint. [See a list of national cloud Graph enpoints here.](https://docs.microsoft.com/en-us/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints)
 1. Run the application from Visual Studio (Debug | Start without Debugging)
 
 ## Community Help and Support

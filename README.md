@@ -57,7 +57,7 @@ If you want to use your own application coordinates, please follow these instruc
     - Select **Register** to create the application.
 1. On the app **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the Visual Studio configuration file for this project.
 1. In the list of pages for the app, select **Authentication**.
-  1. In the **Redirect URIs** list, under **Suggested Redirect URIs for public clients (mobile, desktop)** check the box next to **https://login.microsoftonline.com/common/oauth2/nativeclient**.
+  1. In the **Redirect URIs** list, under **Suggested Redirect URIs for public clients (mobile, desktop)** be sure to add https://login.microsoftonline.com/common/oauth2/nativeclient.
    1. Select **Save**.
 1. Configure Permissions for your application. To that extent in the list of pages click on **API permissions**
    - click the **Add a permission** button and then,
@@ -69,8 +69,8 @@ If you want to use your own application coordinates, please follow these instruc
 
 1. Open the `active-directory-wpf-msgraph-v2\App.xaml.cs` file
 1. Find the app key `ClientId` and replace the existing value with the application ID (clientId) of the `WpfApp` application copied from the Azure portal.
-
-5. Run the application from Visual Studio (Debug | Start without Debugging)
+1. If connecting to a national cloud, open the 'active-directory-wpf-msgraph-v2\MainWindow.xaml.cs' file and update string `graphAPIEndpoint` to the appropriate endpoint. [See a list of national cloud Graph enpoints here.](https://docs.microsoft.com/en-us/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints)
+1. Run the application from Visual Studio (Debug | Start without Debugging)
 
 ## Community Help and Support
 

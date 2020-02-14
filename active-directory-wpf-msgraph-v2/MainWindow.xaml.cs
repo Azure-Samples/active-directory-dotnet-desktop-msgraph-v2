@@ -10,13 +10,13 @@ namespace active_directory_wpf_msgraph_v2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+ 
     public partial class MainWindow : Window
     {
         //Set the API Endpoint to Graph 'me' endpoint. 
         // To change from Microsoft public cloud to a national cloud, use another value of graphAPIEndpoint.
         // Reference with Graph endpoints here: https://docs.microsoft.com/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints
-        static string graphAPIEndpoint = "https://graph.microsoft.com";
-        string graphAPIEndpointMe = graphAPIEndpoint + "/v1.0/me";
+        string graphAPIEndpoint = "https://graph.microsoft.com/v1.0/me";
 
         //Set the scope for API call to user.read
         string[] scopes = new string[] { "user.read" };
@@ -72,7 +72,7 @@ namespace active_directory_wpf_msgraph_v2
 
             if (authResult != null)
             {
-                ResultText.Text = await GetHttpContentWithToken(graphAPIEndpointMe, authResult.AccessToken);
+                ResultText.Text = await GetHttpContentWithToken(graphAPIEndpoint, authResult.AccessToken);
                 DisplayBasicTokenInfo(authResult);
                 this.SignOutButton.Visibility = Visibility.Visible;
             }

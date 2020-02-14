@@ -10,6 +10,7 @@ namespace active_directory_wpf_msgraph_v2
     // To change from Microsoft public cloud to a national cloud, use another value of AzureCloudInstance
     public partial class App : Application
     {
+        // Are we the only ones who use AzureCloudInstance?
         static App()
         {
             _clientApp = PublicClientApplicationBuilder.Create(ClientId)

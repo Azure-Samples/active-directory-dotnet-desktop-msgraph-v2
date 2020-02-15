@@ -10,6 +10,7 @@ namespace active_directory_wpf_msgraph_v2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+ 
     public partial class MainWindow : Window
     {
         //Set the API Endpoint to Graph 'me' endpoint. 

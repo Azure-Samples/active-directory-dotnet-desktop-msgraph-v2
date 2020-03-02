@@ -41,8 +41,9 @@
           "settingFile": "/active-directory-wpf-msgraph-v2/MainWindow.xaml.cs",
           "replaceTokens": {
             "msgraphEndpointHost": "https://graph.microsoft.com/"
+          }
         }
-       ]		
+      ]
     }
   ]
 }

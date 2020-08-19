@@ -72,6 +72,16 @@ If you want to use your own application coordinates, please follow these instruc
 1. If connecting to a national cloud, open the 'active-directory-wpf-msgraph-v2\MainWindow.xaml.cs' file and update string `graphAPIEndpoint` to the appropriate endpoint. [See a list of national cloud Graph enpoints here.](https://docs.microsoft.com/en-us/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints)
 1. Run the application from Visual Studio (Debug | Start without Debugging)
 
+## Troubleshooting
+
+### System.Security.Cryptography.CryptographicException: 'Key not valid for use in specified state
+
+**What happens**
+You execute the app on my machine, zip the bin\release folder and share it with a colleague and this does no longer work with an exception (see #56 for details).
+
+**How to remediate**
+Remove the tokencache file (which ends in `.msalcache.bin3`) from the `bin\debug` and `bin\release` folder before moving your app to the new system. The token cache in this sample uses DPAPI, which is only for you
+
 ## Community Help and Support
 
 We use [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) with the community to provide support. We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before. Make sure that your questions or comments are tagged with [msal.dotnet].

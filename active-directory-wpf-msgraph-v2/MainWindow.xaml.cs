@@ -54,7 +54,7 @@ namespace active_directory_wpf_msgraph_v2
                 try
                 {
                     authResult = await app.AcquireTokenInteractive(scopes)
-                        .WithAccount(accounts.FirstOrDefault())
+                        .WithAccount(firstAccount)
                         .WithParentActivityOrWindow(new WindowInteropHelper(this).Handle) // optional, used to center the browser on the window
                         .WithPrompt(Prompt.SelectAccount)
                         .ExecuteAsync();

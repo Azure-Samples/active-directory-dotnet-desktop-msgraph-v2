@@ -82,6 +82,8 @@ You execute the app on my machine, zip the bin\release folder and share it with 
 **How to remediate**
 Remove the tokencache file (which ends in `.msalcache.bin3`) from the `bin\debug` and `bin\release` folder before moving your app to the new system. The token cache in this sample uses DPAPI, which is only for you
 
+> [Consider taking a moment to share your experience with us.](https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR73pcsbpbxNJuZCMKN0lURpUM0lFVVI3T0VST0IzOThEMDVLNjRGOUxQRSQlQCN0PWcu)
+
 ## Community Help and Support
 
 We use [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) with the community to provide support. We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before. Make sure that your questions or comments are tagged with [msal.dotnet].

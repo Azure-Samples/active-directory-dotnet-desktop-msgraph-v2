@@ -27,6 +27,11 @@ namespace active_directory_wpf_msgraph_v2
             InitializeComponent();
         }
 
+        private void UseWam_Changed(object sender, RoutedEventArgs e)
+        {
+            App.CreateApplication(howToSignIn.SelectedIndex != 2);
+        }
+
         /// <summary>
         /// Call AcquireToken - to acquire a token requiring user to sign-in
         /// </summary>
@@ -37,9 +42,20 @@ namespace active_directory_wpf_msgraph_v2
             ResultText.Text = string.Empty;
             TokenInfoText.Text = string.Empty;
 
-            var accounts = await app.GetAccountsAsync();
-            var firstAccount = accounts.FirstOrDefault();
+            IAccount firstAccount;
 
+            // WAM will always get an account in the cache. So if we want
+            // to have a chance to select the accounts interactively, we need to
+            // force the non-account
+            if (howToSignIn.SelectedIndex == 1)
+            {
+                firstAccount = null;
+            }
+            else
+            {
+                var accounts = await app.GetAccountsAsync();
+                firstAccount = accounts.FirstOrDefault();
+            }
             try
             {
                 authResult = await app.AcquireTokenSilent(scopes, firstAccount)
@@ -137,5 +153,7 @@ namespace active_directory_wpf_msgraph_v2
                 TokenInfoText.Text += $"Token Expires: {authResult.ExpiresOn.ToLocalTime()}" + Environment.NewLine;
             }
         }
+
+
     }
 }

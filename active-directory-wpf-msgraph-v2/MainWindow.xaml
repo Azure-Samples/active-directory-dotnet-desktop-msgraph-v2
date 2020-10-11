@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:active_directory_wpf_msgraph_v2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="525" SizeToContent="Height">
+        Title="MainWindow" Height="Auto" Width="600" SizeToContent="Height">
     <Grid>
         <StackPanel Background="Azure">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <ComboBox x:Name="howToSignIn" SelectedIndex="0" SelectionChanged="UseWam_Changed" VerticalAlignment="Center">
+                    <ComboBoxItem Tag="0">Use account used to signed-in in Windows (WAM)</ComboBoxItem>
+                    <ComboBoxItem Tag="1">Use one of the Accounts known by Windows (WAM)</ComboBoxItem>
+                    <ComboBoxItem Tag="1">Use any account (Azure AD)</ComboBoxItem>
+                </ComboBox>
                 <Button x:Name="CallGraphButton" Content="Call Microsoft Graph API" HorizontalAlignment="Right" Padding="5" Click="CallGraphButton_Click" Margin="5" FontFamily="Segoe Ui"/>
                 <Button x:Name="SignOutButton" Content="Sign-Out" HorizontalAlignment="Right" Padding="5" Click="SignOutButton_Click" Margin="5" Visibility="Collapsed" FontFamily="Segoe Ui"/>
             </StackPanel>

@@ -10,9 +10,9 @@
         <StackPanel Background="Azure">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <ComboBox x:Name="howToSignIn" SelectedIndex="0" SelectionChanged="UseWam_Changed" VerticalAlignment="Center">
-                    <ComboBoxItem Tag="0">Use account used to signed-in in Windows (WAM)</ComboBoxItem>
-                    <ComboBoxItem Tag="1">Use one of the Accounts known by Windows (WAM)</ComboBoxItem>
-                    <ComboBoxItem Tag="1">Use any account (Azure AD)</ComboBoxItem>
+                    <ComboBoxItem>Use account used to signed-in in Windows (WAM)</ComboBoxItem>
+                    <ComboBoxItem>Use one of the Accounts known by Windows (WAM)</ComboBoxItem>
+                    <ComboBoxItem>Use any account (Azure AD)</ComboBoxItem>
                 </ComboBox>
                 <Button x:Name="CallGraphButton" Content="Call Microsoft Graph API" HorizontalAlignment="Right" Padding="5" Click="CallGraphButton_Click" Margin="5" FontFamily="Segoe Ui"/>
                 <Button x:Name="SignOutButton" Content="Sign-Out" HorizontalAlignment="Right" Padding="5" Click="SignOutButton_Click" Margin="5" Visibility="Collapsed" FontFamily="Segoe Ui"/>

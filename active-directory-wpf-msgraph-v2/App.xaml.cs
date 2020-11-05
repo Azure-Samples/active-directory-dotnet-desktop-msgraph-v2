@@ -29,8 +29,7 @@ namespace active_directory_wpf_msgraph_v2
         //   - for Microsoft Personal account, use consumers
         private static string ClientId = "4a1aa1d5-c567-49d0-ad0b-cd957a47f842";
 
-        // Note: Tenant is important for the quickstart. We'd need to check with Andre/Portal if we
-        // want to change to the AadAuthorityAudience.
+        // Note: Tenant is important for the quickstart.
         private static string Tenant = "common";
         private static string Instance = "https://login.microsoftonline.com/";
         private static IPublicClientApplication _clientApp ;

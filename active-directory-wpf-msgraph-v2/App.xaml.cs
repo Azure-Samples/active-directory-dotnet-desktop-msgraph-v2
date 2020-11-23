@@ -13,7 +13,7 @@ namespace active_directory_wpf_msgraph_v2
     {
         static App()
         {
-            CreateApplication(false);
+            CreateApplication(true);
         }
 
         public static void CreateApplication(bool useWam)

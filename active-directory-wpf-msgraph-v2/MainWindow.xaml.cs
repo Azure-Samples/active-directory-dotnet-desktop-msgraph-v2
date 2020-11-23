@@ -27,11 +27,6 @@ namespace active_directory_wpf_msgraph_v2
             InitializeComponent();
         }
 
-        private void UseWam_Changed(object sender, RoutedEventArgs e)
-        {
-            App.CreateApplication(howToSignIn.SelectedIndex != 2); // Not Azure AD accounts (that is use WAM accounts)
-        }
-
         /// <summary>
         /// Call AcquireToken - to acquire a token requiring user to sign-in
         /// </summary>
@@ -47,7 +42,13 @@ namespace active_directory_wpf_msgraph_v2
             // WAM will always get an account in the cache. So if we want
             // to have a chance to select the accounts interactively, we need to
             // force the non-account
-            if (howToSignIn.SelectedIndex == 1) // Account signed-in with Windows
+            if (howToSignIn.SelectedIndex == 0) // Account signed-in with Windows
+            {
+                firstAccount = PublicClientApplication.OperatingSystemAccount;
+            }
+
+            // WAM
+            else if (howToSignIn.SelectedIndex == 1)
             {
                 firstAccount = null;
             }
@@ -154,6 +155,10 @@ namespace active_directory_wpf_msgraph_v2
             }
         }
 
-
+        private void UseWam_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            SignOutButton_Click(sender, e);
+            App.CreateApplication(howToSignIn.SelectedIndex != 2); // Not Azure AD accounts (that is use WAM accounts)
+        }
     }
 }

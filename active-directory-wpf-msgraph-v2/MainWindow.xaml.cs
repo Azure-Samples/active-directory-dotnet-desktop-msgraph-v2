@@ -39,24 +39,29 @@ namespace active_directory_wpf_msgraph_v2
 
             IAccount firstAccount;
 
-            // WAM will always get an account in the cache. So if we want
-            // to have a chance to select the accounts interactively, we need to
-            // force the non-account
-            if (howToSignIn.SelectedIndex == 0) // Account signed-in with Windows
+            switch(howToSignIn.SelectedIndex)
             {
-                firstAccount = PublicClientApplication.OperatingSystemAccount;
+                // 0: Use account used to signed-in in Windows (WAM)
+                case 0:
+                    // WAM will always get an account in the cache. So if we want
+                    // to have a chance to select the accounts interactively, we need to
+                    // force the non-account
+                    firstAccount = PublicClientApplication.OperatingSystemAccount;
+                    break;
+
+                //  1: Use one of the Accounts known by Windows(WAM)
+                case 1:
+                    // We force WAM to display the dialog with the accounts
+                    firstAccount = null;
+                    break;
+
+                //  Use any account(Azure AD). It's not using WAM
+                default:
+                    var accounts = await app.GetAccountsAsync();
+                    firstAccount = accounts.FirstOrDefault();
+                    break;
             }
 
-            // WAM
-            else if (howToSignIn.SelectedIndex == 1)
-            {
-                firstAccount = null;
-            }
-            else
-            {
-                var accounts = await app.GetAccountsAsync();
-                firstAccount = accounts.FirstOrDefault();
-            }
             try
             {
                 authResult = await app.AcquireTokenSilent(scopes, firstAccount)

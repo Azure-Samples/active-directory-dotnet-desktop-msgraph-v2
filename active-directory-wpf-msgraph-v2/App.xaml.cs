@@ -1,4 +1,5 @@
 ﻿using Microsoft.Identity.Client;
+using System.Linq.Expressions;
 using System.Windows;
 
 namespace active_directory_wpf_msgraph_v2
@@ -6,16 +7,27 @@ namespace active_directory_wpf_msgraph_v2
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    
+
     // To change from Microsoft public cloud to a national cloud, use another value of AzureCloudInstance
     public partial class App : Application
     {
         static App()
         {
-            _clientApp = PublicClientApplicationBuilder.Create(ClientId)
+            CreateApplication(true);
+        }
+
+        public static void CreateApplication(bool useWam)
+        {
+            var builder = PublicClientApplicationBuilder.Create(ClientId)
                 .WithAuthority($"{Instance}{Tenant}")
-                .WithDefaultRedirectUri()
-                .Build();
+                .WithDefaultRedirectUri();
+
+            if (useWam)
+            {
+                builder.WithExperimentalFeatures();
+                builder.WithBroker(true);  // Requires redirect URI "ms-appx-web://microsoft.aad.brokerplugin/{client_id}" in app registration
+            }
+            _clientApp = builder.Build();
             TokenCacheHelper.EnableSerialization(_clientApp.UserTokenCache);
         }
 
@@ -32,7 +44,7 @@ namespace active_directory_wpf_msgraph_v2
         // Note: Tenant is important for the quickstart.
         private static string Tenant = "common";
         private static string Instance = "https://login.microsoftonline.com/";
-        private static IPublicClientApplication _clientApp ;
+        private static IPublicClientApplication _clientApp;
 
         public static IPublicClientApplication PublicClientApp { get { return _clientApp; } }
     }

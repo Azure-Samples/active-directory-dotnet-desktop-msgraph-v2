@@ -37,8 +37,30 @@ namespace active_directory_wpf_msgraph_v2
             ResultText.Text = string.Empty;
             TokenInfoText.Text = string.Empty;
 
-            var accounts = await app.GetAccountsAsync();
-            var firstAccount = accounts.FirstOrDefault();
+            IAccount firstAccount;
+
+            switch(howToSignIn.SelectedIndex)
+            {
+                // 0: Use account used to signed-in in Windows (WAM)
+                case 0:
+                    // WAM will always get an account in the cache. So if we want
+                    // to have a chance to select the accounts interactively, we need to
+                    // force the non-account
+                    firstAccount = PublicClientApplication.OperatingSystemAccount;
+                    break;
+
+                //  1: Use one of the Accounts known by Windows(WAM)
+                case 1:
+                    // We force WAM to display the dialog with the accounts
+                    firstAccount = null;
+                    break;
+
+                //  Use any account(Azure AD). It's not using WAM
+                default:
+                    var accounts = await app.GetAccountsAsync();
+                    firstAccount = accounts.FirstOrDefault();
+                    break;
+            }
 
             try
             {
@@ -136,6 +158,12 @@ namespace active_directory_wpf_msgraph_v2
                 TokenInfoText.Text += $"Username: {authResult.Account.Username}" + Environment.NewLine;
                 TokenInfoText.Text += $"Token Expires: {authResult.ExpiresOn.ToLocalTime()}" + Environment.NewLine;
             }
+        }
+
+        private void UseWam_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            SignOutButton_Click(sender, e);
+            App.CreateApplication(howToSignIn.SelectedIndex != 2); // Not Azure AD accounts (that is use WAM accounts)
         }
     }
 }

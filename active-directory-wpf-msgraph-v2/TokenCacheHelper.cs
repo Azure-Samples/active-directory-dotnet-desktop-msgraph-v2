@@ -25,7 +25,6 @@
 //
 //------------------------------------------------------------------------------
 
-using System;
 using System.IO;
 using System.Security.Cryptography;
 using Microsoft.Identity.Client;
@@ -34,10 +33,27 @@ namespace active_directory_wpf_msgraph_v2
 {
     static class TokenCacheHelper
     {
+        static TokenCacheHelper()
+        {
+            try
+            {
+                // For packaged desktop apps (MSIX packages, also called desktop bridge) the executing assembly folder is read-only. 
+                // In that case we need to use Windows.Storage.ApplicationData.Current.LocalCacheFolder.Path + "\msalcache.bin" 
+                // which is a per-app read/write folder for packaged apps.
+                // See https://developer.microsoft.com/en-us/windows/bridges/desktop/
+                CacheFilePath = Windows.Storage.ApplicationData.Current.LocalCacheFolder.Path + ".msalcache.bin3";
+            }
+            catch (System.InvalidOperationException)
+            {
+                // Fall back for an unpackaged desktop app
+                CacheFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin3";
+            }
+        }
+
         /// <summary>
         /// Path to the token cache
         /// </summary>
-        public static readonly string CacheFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin3";
+        public static string CacheFilePath { get; private set; }
 
         private static readonly object FileLock = new object();
 
@@ -62,8 +78,8 @@ namespace active_directory_wpf_msgraph_v2
                 {
                     // reflect changesgs in the persistent store
                     File.WriteAllBytes(CacheFilePath,
-                                       ProtectedData.Protect(args.TokenCache.SerializeMsalV3(), 
-                                                             null, 
+                                       ProtectedData.Protect(args.TokenCache.SerializeMsalV3(),
+                                                             null,
                                                              DataProtectionScope.CurrentUser)
                                       );
                 }

@@ -40,8 +40,8 @@ namespace active_directory_wpf_msgraph_v2
                 // For packaged desktop apps (MSIX packages, also called desktop bridge) the executing assembly folder is read-only. 
                 // In that case we need to use Windows.Storage.ApplicationData.Current.LocalCacheFolder.Path + "\msalcache.bin" 
                 // which is a per-app read/write folder for packaged apps.
-                // See https://developer.microsoft.com/en-us/windows/bridges/desktop/
-                CacheFilePath = Windows.Storage.ApplicationData.Current.LocalCacheFolder.Path + ".msalcache.bin3";
+                // See https://docs.microsoft.com/windows/msix/desktop/desktop-to-uwp-behind-the-scenes
+                CacheFilePath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalCacheFolder.Path, ".msalcache.bin3");
             }
             catch (System.InvalidOperationException)
             {

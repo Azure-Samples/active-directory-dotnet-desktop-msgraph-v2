@@ -13,7 +13,11 @@
         {
           "url": "https://login.microsoftonline.com/common/oauth2/nativeclient",
           "type": "InstalledClient"
-        }
+        },
+        {
+          "url": "ms-appx-web://microsoft.aad.brokerplugin/{AppId}",
+          "type": "InstalledClient"
+        }        
       ],
       "requiredResourceAccess": [
         {

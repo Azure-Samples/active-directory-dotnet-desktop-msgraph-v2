@@ -1,7 +1,6 @@
-﻿using Microsoft.Identity.Client;
+﻿using System.Windows;
+using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.Desktop;
-using System.Linq.Expressions;
-using System.Windows;
 
 namespace active_directory_wpf_msgraph_v2
 {
@@ -25,7 +24,6 @@ namespace active_directory_wpf_msgraph_v2
 
             if (useWam)
             {
-                builder.WithExperimentalFeatures();
                 builder.WithWindowsBroker(true);  // Requires redirect URI "ms-appx-web://microsoft.aad.brokerplugin/{client_id}" in app registration
             }
             _clientApp = builder.Build();

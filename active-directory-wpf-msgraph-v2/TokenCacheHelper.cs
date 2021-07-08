@@ -76,7 +76,7 @@ namespace active_directory_wpf_msgraph_v2
             {
                 lock (FileLock)
                 {
-                    // reflect changesgs in the persistent store
+                    // reflect changes in the persistent store
                     File.WriteAllBytes(CacheFilePath,
                                        ProtectedData.Protect(args.TokenCache.SerializeMsalV3(),
                                                              null,

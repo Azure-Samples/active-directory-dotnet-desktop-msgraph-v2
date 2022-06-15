@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.Desktop;
+using Microsoft.Identity.Client.Broker;
 
 namespace active_directory_wpf_msgraph_v2
 {
@@ -13,18 +14,23 @@ namespace active_directory_wpf_msgraph_v2
     {
         static App()
         {
-            CreateApplication(true);
+            CreateApplication(true, false);
         }
 
-        public static void CreateApplication(bool useWam)
+        public static void CreateApplication(bool useWam, bool useBrokerPreview)
         {
             var builder = PublicClientApplicationBuilder.Create(ClientId)
                 .WithAuthority($"{Instance}{Tenant}")
                 .WithDefaultRedirectUri();
 
-            if (useWam)
+            //Use of Broker Requires redirect URI "ms-appx-web://microsoft.aad.brokerplugin/{client_id}" in app registration
+            if (useWam && !useBrokerPreview)
             {
-                builder.WithWindowsBroker(true);  // Requires redirect URI "ms-appx-web://microsoft.aad.brokerplugin/{client_id}" in app registration
+                builder.WithWindowsBroker(true);
+            }
+            else if (useWam && useBrokerPreview)
+            {
+                builder.WithBrokerPreview(true);
             }
             _clientApp = builder.Build();
             TokenCacheHelper.EnableSerialization(_clientApp.UserTokenCache);

@@ -22,5 +22,6 @@
             <Label Content="Token Info" Margin="0,0,0,-5" FontFamily="Segoe Ui" />
             <TextBox x:Name="TokenInfoText" TextWrapping="Wrap" MinHeight="70" Margin="5" FontFamily="Segoe Ui"/>
         </StackPanel>
+        <CheckBox x:Name="UseBrokerPreview" Content="Use Preview Broker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="457,42,0,0" Checked="UseBrokerPreview_Changed" Unchecked="UseBrokerPreview_Changed"/>
     </Grid>
 </Window>

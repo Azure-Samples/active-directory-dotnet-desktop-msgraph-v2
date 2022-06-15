@@ -163,7 +163,13 @@ namespace active_directory_wpf_msgraph_v2
         private void UseWam_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             SignOutButton_Click(sender, e);
-            App.CreateApplication(howToSignIn.SelectedIndex != 2); // Not Azure AD accounts (that is use WAM accounts)
+            App.CreateApplication(howToSignIn.SelectedIndex != 2, Convert.ToBoolean(UseBrokerPreview?.IsChecked)); // Not Azure AD accounts (that is use WAM accounts)
+        }
+
+        private void UseBrokerPreview_Changed(object sender, RoutedEventArgs e)
+        {
+            SignOutButton_Click(sender, e);
+            App.CreateApplication(howToSignIn.SelectedIndex != 2, Convert.ToBoolean(UseBrokerPreview?.IsChecked));
         }
     }
 }

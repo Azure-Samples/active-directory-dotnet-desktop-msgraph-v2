@@ -101,10 +101,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.49.0</Version>
+      <Version>4.49.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client.Desktop">
-      <Version>4.49.0</Version>
+      <Version>4.49.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client.Broker">
       <Version>4.48.0-preview</Version>

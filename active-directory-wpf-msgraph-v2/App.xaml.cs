@@ -26,7 +26,6 @@ namespace active_directory_wpf_msgraph_v2
             if (useWam)
             {
                 BrokerOptions brokerOptions = new BrokerOptions(BrokerOptions.OperatingSystems.Windows);
-                brokerOptions.ListOperatingSystemAccounts = true;
                 builder.WithBroker(brokerOptions);
             }
 

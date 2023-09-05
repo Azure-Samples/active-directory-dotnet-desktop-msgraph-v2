@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Interop;
 
 namespace active_directory_wpf_msgraph_v2
@@ -10,7 +11,7 @@ namespace active_directory_wpf_msgraph_v2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
- 
+
     public partial class MainWindow : Window
     {
         //Set the API Endpoint to Graph 'me' endpoint. 
@@ -37,29 +38,13 @@ namespace active_directory_wpf_msgraph_v2
             ResultText.Text = string.Empty;
             TokenInfoText.Text = string.Empty;
 
-            IAccount firstAccount;
+            // if the user signed-in before, remember the account info from the cache
+            IAccount firstAccount = (await app.GetAccountsAsync()).FirstOrDefault();
 
-            switch(howToSignIn.SelectedIndex)
+            // otherwise, try witht the Windows account
+            if (firstAccount == null)
             {
-                // 0: Use account used to signed-in in Windows (WAM)
-                case 0:
-                    // WAM will always get an account in the cache. So if we want
-                    // to have a chance to select the accounts interactively, we need to
-                    // force the non-account
-                    firstAccount = PublicClientApplication.OperatingSystemAccount;
-                    break;
-
-                //  1: Use one of the Accounts known by Windows(WAM)
-                case 1:
-                    // We force WAM to display the dialog with the accounts
-                    firstAccount = null;
-                    break;
-
-                //  Use any account(Azure AD). It's not using WAM
-                default:
-                    var accounts = await app.GetAccountsAsync();
-                    firstAccount = accounts.FirstOrDefault();
-                    break;
+                firstAccount = PublicClientApplication.OperatingSystemAccount; 
             }
 
             try
@@ -158,12 +143,6 @@ namespace active_directory_wpf_msgraph_v2
                 TokenInfoText.Text += $"Username: {authResult.Account.Username}" + Environment.NewLine;
                 TokenInfoText.Text += $"Token Expires: {authResult.ExpiresOn.ToLocalTime()}" + Environment.NewLine;
             }
-        }
-
-        private void UseWam_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            SignOutButton_Click(sender, e);
-            App.CreateApplication(howToSignIn.SelectedIndex != 2); // Not Azure AD accounts (that is use WAM accounts)
         }
     }
 }

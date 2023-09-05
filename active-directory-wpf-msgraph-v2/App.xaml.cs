@@ -34,30 +34,23 @@ namespace active_directory_wpf_msgraph_v2
 
         static App()
         {
-            CreateApplication(true);
+            CreateApplication();
         }
 
-        public static void CreateApplication(bool useWam)
+        public static void CreateApplication()
         {
-            var builder = PublicClientApplicationBuilder.Create(ClientId)
+            BrokerOptions brokerOptions = new BrokerOptions(BrokerOptions.OperatingSystems.Windows);
+
+            _clientApp = PublicClientApplicationBuilder.Create(ClientId)
                 .WithAuthority($"{Instance}{Tenant}")
-                .WithDefaultRedirectUri();
-
-            //Use of Broker Requires redirect URI "ms-appx-web://microsoft.aad.brokerplugin/{client_id}" in app registration
-            if (useWam)
-            {
-                BrokerOptions brokerOptions = new BrokerOptions(BrokerOptions.OperatingSystems.Windows);
-                builder.WithBroker(brokerOptions);
-            }
-
-            _clientApp = builder.Build();
-
+                .WithDefaultRedirectUri()
+                .WithBroker(brokerOptions)
+                .Build();
 
             MsalCacheHelper cacheHelper = CreateCacheHelperAsync().GetAwaiter().GetResult();
 
-            // 3. Let the cache helper handle MSAL's cache
+            // Let the cache helper handle MSAL's cache, otherwise the user will be prompted to sign-in every time.
             cacheHelper.RegisterCache(_clientApp.UserTokenCache);
-
         }
 
         private static async Task<MsalCacheHelper> CreateCacheHelperAsync()
@@ -70,7 +63,7 @@ namespace active_directory_wpf_msgraph_v2
 
             MsalCacheHelper cacheHelper = await MsalCacheHelper.CreateAsync(
                         storageProperties,
-                        new TraceSource("MSAL.CacheTrace")) 
+                        new TraceSource("MSAL.CacheTrace"))
                      .ConfigureAwait(false);
 
             return cacheHelper;

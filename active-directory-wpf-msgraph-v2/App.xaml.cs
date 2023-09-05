@@ -29,13 +29,12 @@ namespace active_directory_wpf_msgraph_v2
         // Note: Tenant is important for the quickstart.
         private static string Tenant = "common";
         private static string Instance = "https://login.microsoftonline.com/";
-        private static IPublicClientApplication _clientApp;
 
-        public static IPublicClientApplication PublicClientApp { get { return _clientApp; } }
+        public static IPublicClientApplication PublicClientApp { get; private set; }
 
         static App()
         {
-            CreateApplication(true);
+            CreateApplication(false);
         }
 
         public static void CreateApplication(bool useWam)
@@ -51,31 +50,11 @@ namespace active_directory_wpf_msgraph_v2
                 builder.WithBroker(brokerOptions);
             }
 
-            _clientApp = builder.Build();
+            PublicClientApp = builder.Build();
 
-            LowLevelCacheAPI.EnableSerialization(_clientApp.UserTokenCache);
+            LowLevelCacheAPI.EnableSerialization(PublicClientApp.UserTokenCache);
 
-            //MsalCacheHelper cacheHelper = CreateCacheHelperAsync().GetAwaiter().GetResult();
 
-            //// 3. Let the cache helper handle MSAL's cache
-            //cacheHelper.RegisterCache(_clientApp.UserTokenCache);
-
-        }
-
-        private static async Task<MsalCacheHelper> CreateCacheHelperAsync()
-        {
-            // Since this is a WPF application, only Windows storage is configured
-            var storageProperties = new StorageCreationPropertiesBuilder(
-                              System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + ".msalcache.bin",
-                              MsalCacheHelper.UserRootDirectory)
-                                .Build();
-
-            MsalCacheHelper cacheHelper = await MsalCacheHelper.CreateAsync(
-                        storageProperties,
-                        new TraceSource("MSAL.CacheTrace"))
-                     .ConfigureAwait(false);
-
-            return cacheHelper;
         }
     }
 
@@ -92,7 +71,7 @@ namespace active_directory_wpf_msgraph_v2
         {
             get
             {
-                return System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin3";
+                return System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin4";
             }
         }
 

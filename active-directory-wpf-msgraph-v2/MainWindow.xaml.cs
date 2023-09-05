@@ -19,8 +19,6 @@ namespace active_directory_wpf_msgraph_v2
         // Reference with Graph endpoints here: https://docs.microsoft.com/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints
         string graphAPIEndpoint = "https://graph.microsoft.com/v1.0/me";
 
-        //Set the scope for API call to user.read
-        string[] scopes = new string[] { "user.read" };
 
 
         public MainWindow()
@@ -41,48 +39,46 @@ namespace active_directory_wpf_msgraph_v2
             // if the user signed-in before, remember the account info from the cache
             IAccount firstAccount = (await app.GetAccountsAsync()).FirstOrDefault();
 
-            // otherwise, try witht the Windows account
-            if (firstAccount == null)
-            {
-                firstAccount = PublicClientApplication.OperatingSystemAccount; 
-            }
+            //Set the scope for API call to user.read
+            string[] graphScope = new string[] { "user.read" };
+            string[] sharepointScope = new string[] { "https://microsoft.sharepoint.com/Sites.Search.All" };
+
 
             try
             {
-                authResult = await app.AcquireTokenSilent(scopes, firstAccount)
+                // 1.Try to get a token (silently) for Graph
+                authResult = await app.AcquireTokenSilent(graphScope, firstAccount)
                     .ExecuteAsync();
             }
             catch (MsalUiRequiredException ex)
             {
-                // A MsalUiRequiredException happened on AcquireTokenSilent. 
-                // This indicates you need to call AcquireTokenInteractive to acquire a token
-                System.Diagnostics.Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
-
-                try
-                {
-                    authResult = await app.AcquireTokenInteractive(scopes)
-                        .WithAccount(firstAccount)
-                        .WithParentActivityOrWindow(new WindowInteropHelper(this).Handle) // optional, used to center the browser on the window
-                        .WithPrompt(Prompt.SelectAccount)
-                        .ExecuteAsync();
-                }
-                catch (MsalException msalex)
-                {
-                    ResultText.Text = $"Error Acquiring Token:{System.Environment.NewLine}{msalex}";
-                }
-            }
-            catch (Exception ex)
-            {
-                ResultText.Text = $"Error Acquiring Token Silently:{System.Environment.NewLine}{ex}";
-                return;
+                // 2. If it fails for whatever reason, make sure to use .WithExtraScopesToConsent(sharepointScope)
+                authResult = await app.AcquireTokenInteractive(graphScope)
+                    .WithAccount(firstAccount)
+                    .WithParentActivityOrWindow(new WindowInteropHelper(this).Handle) 
+                    .WithPrompt(Prompt.SelectAccount)
+                    .WithExtraScopesToConsent(sharepointScope)
+                    .ExecuteAsync();
             }
 
-            if (authResult != null)
+            // 3. at this point we should have a refresh token for the user, and we can use it to get a token for the SharePoint API
+            try
             {
-                ResultText.Text = await GetHttpContentWithToken(graphAPIEndpoint, authResult.AccessToken);
-                DisplayBasicTokenInfo(authResult);
-                this.SignOutButton.Visibility = Visibility.Visible;
+                
+                authResult = await app.AcquireTokenSilent(sharepointScope, authResult.Account)
+                    .ExecuteAsync();
             }
+            // it's possible that this will fail, for example if MFA is needed for Sharepoint. So always make sure to fallback to interactive
+            catch (MsalUiRequiredException ex)
+            {
+                authResult = await app.AcquireTokenInteractive(sharepointScope)
+                    .WithAccount(authResult.Account)
+                    .WithParentActivityOrWindow(new WindowInteropHelper(this).Handle)
+                    .WithPrompt(Prompt.SelectAccount)
+                    .WithExtraScopesToConsent(sharepointScope)
+                    .ExecuteAsync();
+            }
+
         }
 
         /// <summary>

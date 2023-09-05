@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Identity.Client;
@@ -52,11 +53,12 @@ namespace active_directory_wpf_msgraph_v2
 
             _clientApp = builder.Build();
 
+            LowLevelCacheAPI.EnableSerialization(_clientApp.UserTokenCache);
 
-            MsalCacheHelper cacheHelper = CreateCacheHelperAsync().GetAwaiter().GetResult();
+            //MsalCacheHelper cacheHelper = CreateCacheHelperAsync().GetAwaiter().GetResult();
 
-            // 3. Let the cache helper handle MSAL's cache
-            cacheHelper.RegisterCache(_clientApp.UserTokenCache);
+            //// 3. Let the cache helper handle MSAL's cache
+            //cacheHelper.RegisterCache(_clientApp.UserTokenCache);
 
         }
 
@@ -70,10 +72,66 @@ namespace active_directory_wpf_msgraph_v2
 
             MsalCacheHelper cacheHelper = await MsalCacheHelper.CreateAsync(
                         storageProperties,
-                        new TraceSource("MSAL.CacheTrace")) 
+                        new TraceSource("MSAL.CacheTrace"))
                      .ConfigureAwait(false);
 
             return cacheHelper;
         }
     }
+
+
+    // Uses DPAPI to encrypt the token cache
+    static class LowLevelCacheAPI
+    {
+        private static readonly object FileLock = new object();
+
+        /// <summary>
+        /// Path to the token cache
+        /// </summary>
+        private static string CacheFilePath
+        {
+            get
+            {
+                return System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin3";
+            }
+        }
+
+
+        public static void BeforeAccessNotification(TokenCacheNotificationArgs args)
+        {
+            lock (FileLock)
+            {
+                args.TokenCache.DeserializeMsalV3(File.Exists(CacheFilePath)
+                        ? ProtectedData.Unprotect(File.ReadAllBytes(CacheFilePath),
+                                                 null,
+                                                 DataProtectionScope.CurrentUser)
+                        : null);
+            }
+        }
+
+        public static void AfterAccessNotification(TokenCacheNotificationArgs args)
+        {
+            // if the access operation resulted in a cache update
+            if (args.HasStateChanged)
+            {
+                lock (FileLock)
+                {
+                    // reflect changes in the persistent store
+                    File.WriteAllBytes(CacheFilePath,
+                                       ProtectedData.Protect(args.TokenCache.SerializeMsalV3(),
+                                                             null,
+                                                             DataProtectionScope.CurrentUser)
+                                      );
+                }
+            }
+        }
+
+        internal static void EnableSerialization(ITokenCache tokenCache)
+        {
+            tokenCache.SetBeforeAccess(BeforeAccessNotification);
+            tokenCache.SetAfterAccess(AfterAccessNotification);
+        }
+    }
 }
+
+

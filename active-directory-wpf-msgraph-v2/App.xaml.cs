@@ -102,7 +102,8 @@ namespace active_directory_wpf_msgraph_v2
             lock (FileLock)
             {
                 args.TokenCache.DeserializeMsalV3(File.Exists(CacheFilePath)
-                        ? ProtectedData.Unprotect(File.ReadAllBytes(CacheFilePath),
+                        ? ProtectedData.Unprotect(
+                            File.ReadAllBytes(CacheFilePath),
                                                  null,
                                                  DataProtectionScope.CurrentUser)
                         : null);
